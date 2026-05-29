@@ -11,6 +11,8 @@ public:
 
 	bool isGround;
 
+	float moveSpeed;
+
 	Player();
 
 	void Update();

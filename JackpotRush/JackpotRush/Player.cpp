@@ -8,6 +8,8 @@ Player::Player()
 
 	vy = 0;
 	isGround = false;
+
+	moveSpeed = 5;
 }
 
 void Player::Update()
@@ -15,12 +17,12 @@ void Player::Update()
 	// ¶‰EˆÚ“®
 	if (CheckHitKey(KEY_INPUT_A))
 	{
-		x -= 5;
+		x -= moveSpeed;
 	}
 
 	if (CheckHitKey(KEY_INPUT_D))
 	{
-		x += 5;
+		x += moveSpeed;
 	}
 
 	// ƒWƒƒƒ“ƒvˆ—

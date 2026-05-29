@@ -7,7 +7,10 @@ int coinX = 500;
 int coinY = 350;
 bool coinGet = false;
 
-int score = 0;
+int score = 3;
+
+int slotResult = 0;
+int speedTimer = 0;
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -25,6 +28,32 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		ClearDrawScreen();
 
 		player.Update();
+
+		// スロット
+		if (CheckHitKey(KEY_INPUT_E)) {
+			if (score >= 3) {
+				score -= 3;
+
+				slotResult = GetRand(2) + 1;
+
+				// スピードアップ!!!!!!!!!
+				if (slotResult == 1) {
+					player.moveSpeed = 10;
+					speedTimer = 100;
+				}
+			}
+		}
+
+		// スピード効果時間
+		if (speedTimer > 0)
+		{
+			speedTimer--;
+
+			if (speedTimer <= 0)
+			{
+				player.moveSpeed = 5;
+			}
+		}
 
 		// コイン取得
 		if (!coinGet) {
@@ -49,6 +78,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		// スコア表示
 		DrawFormatString(20, 20, GetColor(255, 255, 255), "Score : %d", score);
+
+		DrawFormatString(20, 60, GetColor(255, 255, 255), "Eキーでスロット！");
+		DrawFormatString(20, 100, GetColor(255, 255, 0), "Slot Result : %d", slotResult);
 
 		ScreenFlip();
 	}
