@@ -7,7 +7,7 @@ public:
 	int x;
 	int y;
 
-	float vy;
+	float vy; // Vertical Velocity
 
 	bool isGround;
 
